@@ -1,13 +1,14 @@
 {
   "name": "loja-sapatos-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server.ts",
   "type": "module",
   "scripts": {
-    "build": "npm install && npx tsup src/server.ts --format esm --out-dir .",
-    "start": "node server.js",
+    "build": "tsup",
+    "start" : "node dist/server.js",
     "start:dev": "dotenv -e .env tsx src/server.ts",
-    "start:watch": "dotenv -e .env tsx watch src/server.ts"
+    "start:watch": "dotenv -e .env tsx watch src/server.ts",
+    "start:dist": "npm run dist && node dist/src/index.js"
   },
   "keywords": [],
   "author": "",
