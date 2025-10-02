@@ -15,7 +15,8 @@ export const getSaleByIdService = async (id : number) => {
 
 export const createCompleteSaleService = async (
     saleData: Omit<SaleModel, 'sale_id'>,
-    items: ItemSalePayload[]
+    items: ItemSalePayload[],
+    method_id: number 
 ): Promise<number> => {
-    return SalesRepository.createCompleteSale(saleData, items);
+    return SalesRepository.createCompleteSale(saleData,method_id, items);
 };
