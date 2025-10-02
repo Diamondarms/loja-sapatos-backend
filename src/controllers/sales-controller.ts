@@ -16,14 +16,14 @@ export const getSaleById = async (req: Request, res: Response) => {
 
 export const createSaleController = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { saleData, items } = req.body;
+        const { saleData, method_id, items } = req.body;
 
         if (!saleData || !items || !items.length) {
             res.status(400).json({ message: 'Dados da venda ou itens ausentes.' });
             return;
         }
 
-        const idDaNovaVenda = await SalesService.createCompleteSaleService(saleData, items);
+        const idDaNovaVenda = await SalesService.createCompleteSaleService(saleData, method_id, items);
 
         res.status(201).json({ 
             message: 'Venda criada com sucesso!',
