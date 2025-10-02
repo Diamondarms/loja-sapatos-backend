@@ -4,8 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "node_modules/.bin/tsup src",
-    "start": "node dist/server.cjs",
+    "build": "tsup src --out-dir dist",
+    "start": "node dist/server.js",
     "start:dev": "dotenv -e .env tsx src/server.ts",
     "start:watch": "dotenv -e .env tsx watch src/server.ts"
   },
