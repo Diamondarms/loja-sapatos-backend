@@ -1,5 +1,5 @@
 import { client } from "../db";
-import { SaleModel, ItemSalePayload } from "../models/models";
+import { SaleModel, ItemSalePayload, ItemSaleModel } from "../models/models";
 
 export const findAllSales = async (): Promise<SaleModel[]> => {
     const result = await client.query(`
@@ -8,6 +8,19 @@ export const findAllSales = async (): Promise<SaleModel[]> => {
         data_venda AS sale_date,
         id_cliente AS customer_id
         FROM venda
+    `);
+
+    return result.rows;
+}
+
+export const findAllItemSales = async (): Promise<ItemSaleModel[]> => {
+    const result = await client.query(`
+        SELECT 
+        id_item_venda AS item_sale_id,
+        quantidade AS quantity,
+        id_venda AS sale_id,
+        id_produto AS product_id
+        FROM item_venda
     `);
 
     return result.rows;

@@ -7,6 +7,12 @@ export const getSalesService = async () => {
     return data;
 }
 
+export const getItemSalesService = async () => {
+    const data = await SalesRepository.findAllItemSales();
+
+    return data;
+}
+
 export const getSaleByIdService = async (id : number) => {
     const data = await SalesRepository.findSaleById(id);
 

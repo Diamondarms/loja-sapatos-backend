@@ -1,34 +1,34 @@
 import { client } from "../db";
 import { ProductModel } from "../models/models";
 
-export const findProfitByPeriod = async (begin_date: string, final_date: string): Promise<ProductModel[] | null> => {
+export const findProfitByPeriod = async (begin_date: string, final_date: string): Promise<number | null> => {
     const result = await client.query(`
         SELECT COALESCE(SUM(itv.quantidade * prod.preco_venda), 0) AS profit
         FROM venda ven
         JOIN item_venda itv ON ven.id_venda = itv.id_venda
         JOIN produto prod ON itv.id_produto = prod.id_produto
         WHERE ven.data_venda
-        BETWEEN TO_DATE($1,'DD/MM/YYYY')
-        AND TO_DATE($2,'DD/MM/YYYY')
+        BETWEEN TO_DATE($1,'YYYY/MM/DD')
+        AND TO_DATE($2,'YYYY/MM/DD')
     `, [begin_date, final_date]);
     return result.rows[0] || null;
 }
 
-export const findProfitByPeriodAndSupplier = async (begin_date: string, final_date: string, supplier_id: number): Promise<ProductModel[] | null> => {
+export const findProfitByPeriodAndSupplier = async (begin_date: string, final_date: string, supplier_id: number): Promise<number | null> => {
     const result = await client.query(`
         SELECT COALESCE(SUM(itv.quantidade * prod.preco_venda), 0) AS profit
         FROM venda ven
         JOIN item_venda itv ON ven.id_venda = itv.id_venda
         JOIN produto prod ON itv.id_produto = prod.id_produto
         WHERE ven.data_venda
-        BETWEEN TO_DATE($1,'DD/MM/YYYY')
-        AND TO_DATE($2,'DD/MM/YYYY')
+        BETWEEN TO_DATE($1,'YYYY/MM/DD')
+        AND TO_DATE($2,'YYYY/MM/DD')
         AND prod.id_fornecedor = $3
     `, [begin_date, final_date, supplier_id]);
     return result.rows[0] || null;
 }
 
-export const findProfitByProduct = async (product_id: number): Promise<ProductModel[] | null> => {
+export const findProfitByProduct = async (product_id: number): Promise<number | null> => {
     const result = await client.query(`
       SELECT COALESCE(SUM(itv.quantidade * prod.preco_venda), 0) AS profit
       FROM venda ven
@@ -58,7 +58,7 @@ export const findCustomerWithMostPurchases = async (): Promise<ProductModel[] | 
         group by 1, 2
         order by 3 DESC LIMIT 1
     `);
-    return result.rows[0] || null;
+    return result.rows || null;
 }
 
 export const ProductsBoughtByCustomer = async (customer_id: number): Promise<ProductModel[] | null> => {
@@ -70,7 +70,7 @@ export const ProductsBoughtByCustomer = async (customer_id: number): Promise<Pro
         join produto pro ON itv.id_produto = pro.id_produto
         where cli.id_cliente = $1
     `, [customer_id]);
-    return result.rows[0] || null;
+    return result.rows || null;
 }
 
 export const CustomersWhoBoughtProduct = async (product_id: number): Promise<ProductModel[] | null> => {
@@ -82,5 +82,5 @@ export const CustomersWhoBoughtProduct = async (product_id: number): Promise<Pro
         join produto pro ON itv.id_produto = pro.id_produto
         where pro.id_produto = $1
     `, [product_id]);
-    return result.rows[0] || null;
+    return result.rows || null;
 }

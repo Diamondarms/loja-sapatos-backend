@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "tsup src/server.ts --out-dir dist --dts false",
-    "start" : "node dist/server.js",
-    "start:dev": "dotenv -e .env tsx src/server.ts",
+    "start": "node dist/server.js",
+    "dev": "dotenv -e .env tsx src/server.ts",
     "start:watch": "dotenv -e .env tsx watch src/server.ts",
     "start:dist": "npm run dist && node dist/src/index.js"
   },

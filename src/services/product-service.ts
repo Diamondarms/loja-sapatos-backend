@@ -25,8 +25,8 @@ export const createProductService = async (product : ProductModel) => {
     return data;
 }
 
-export const updateProductService = async (id : number, new_price : number) => {
-    const data = await productsRepository.updateProduct(id,new_price);
+export const updateProductService = async (id : number, new_stock : number) => {
+    const data = await productsRepository.updateProduct(id,new_stock);
 
     return data;
 }

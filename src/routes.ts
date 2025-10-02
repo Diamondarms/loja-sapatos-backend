@@ -44,6 +44,7 @@ router.patch("/Customers/:id", CustomerController.updateCustomer);
 //Vendas
 // no params or body
 router.get("/Sales", SaleController.getAllSale);
+router.get("/ItemSales", SaleController.getAllItemSales);
 router.get("/Sales/:id", SaleController.getSaleById);
 //  saleData: Omit<SaleModel, 'sale_id'> items: ItemSalePayload[]
 router.post("/Sales/", SaleController.createSaleController);

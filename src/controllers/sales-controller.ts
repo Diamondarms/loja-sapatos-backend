@@ -7,6 +7,12 @@ export const getAllSale = async (req: Request, res: Response) => {
     res.status(200).send(data);
 };
 
+export const getAllItemSales = async (req: Request, res: Response) => {
+    const data = await SalesService.getItemSalesService();
+    
+    res.status(200).send(data);
+};
+
 export const getSaleById = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const data = await SalesService.getSaleByIdService(id);
