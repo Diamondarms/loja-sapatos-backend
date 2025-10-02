@@ -77,3 +77,8 @@ export interface ItemSalePayload {
     product_id: number;
     quantity: number;
 }
+
+export interface ProductDetailModel {
+    preco_venda: number;
+    quantidade_estoque: number;
+}

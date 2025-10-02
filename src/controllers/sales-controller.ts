@@ -22,14 +22,13 @@ export const getSaleById = async (req: Request, res: Response) => {
 
 export const createSaleController = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { saleData, method_id, items } = req.body;
+        const { saleData, payment_method_id, items } = req.body;
 
-        if (!saleData || !items || !items.length) {
-            res.status(400).json({ message: 'Dados da venda ou itens ausentes.' });
+        if (!saleData || !items || !items.length || !payment_method_id) {
+            res.status(400).json({ message: 'Dados da venda, itens ou método de pagamento ausentes.' });
             return;
         }
-
-        const idDaNovaVenda = await SalesService.createCompleteSaleService(saleData, method_id, items);
+        const idDaNovaVenda = await SalesService.createCompleteSaleService(saleData, items, payment_method_id);
 
         res.status(201).json({ 
             message: 'Venda criada com sucesso!',

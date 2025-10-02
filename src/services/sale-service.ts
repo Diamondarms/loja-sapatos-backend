@@ -24,5 +24,6 @@ export const createCompleteSaleService = async (
     items: ItemSalePayload[],
     method_id: number 
 ): Promise<number> => {
-    return SalesRepository.createCompleteSale(saleData,method_id, items);
+
+    return SalesRepository.createCompleteSale(saleData, method_id, items);
 };
