@@ -1,7 +1,7 @@
 {
   "name": "loja-sapatos-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server.js",
   "type": "module",
   "scripts": {
     "build": "tsup src/server.ts --format esm --out-dir dist",
