@@ -8,6 +8,7 @@ export const findAllProducts = async (): Promise<ProductModel[]> => {
         nome AS name,
         id_categoria AS category_id,
         tamanho AS size,
+        quantidade_estoque AS stock,
         preco_venda AS sale_price,
         preco_compra AS purchase_price,
         id_fornecedor AS supplier_id
@@ -24,6 +25,7 @@ export const findProductById = async (id : number): Promise<ProductModel[] | nul
         nome AS name,
         id_categoria AS category_id,
         tamanho AS size,
+        quantidade_estoque AS stock,
         preco_venda AS sale_price,
         preco_compra AS purchase_price,
         id_fornecedor AS supplier_id
@@ -42,6 +44,7 @@ export const findProductByName = async (name : string): Promise<ProductModel[] |
         nome AS name,
         id_categoria AS category_id,
         tamanho AS size,
+        quantidade_estoque AS stock,
         preco_venda AS sale_price,
         preco_compra AS purchase_price,
         id_fornecedor AS supplier_id
@@ -56,18 +59,18 @@ export const findProductByName = async (name : string): Promise<ProductModel[] |
 export const createProduct = async (product: ProductModel): Promise<void> => {
   await client.query(`
     INSERT INTO produto (
-      id_produto,
       nome,
       tamanho,
+      quantidade_estoque,
       preco_compra,
       preco_venda,
       id_fornecedor,
       id_categoria
     ) VALUES ($1, $2, $3, $4, $5, $6, $7)
     `,[
-      product.product_id,
       product.name,
       product.size,
+      product.stock,
       product.purchase_price,
       product.sale_price,
       product.supplier_id,
@@ -75,12 +78,12 @@ export const createProduct = async (product: ProductModel): Promise<void> => {
     ]);
 };
 
-export const updateProduct = async (id: number, new_price: number): Promise<void> => {
+export const updateProduct = async (id: number, new_stock: number): Promise<void> => {
   await client.query(`
     UPDATE produto
-    SET preco_venda = $1
+    SET quantidade_estoque = $1
     WHERE id_produto = $2
-    `,[new_price, id]
+    `,[new_stock, id]
   );
 };
 

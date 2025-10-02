@@ -31,13 +31,11 @@ export const findSupplierById = async (id : number): Promise<SupplierModel[] | n
 export const createSupplier = async (supplier: SupplierModel): Promise<void> => {
   await client.query(`
     INSERT INTO fornecedor (
-      id_fornecedor,
       nome,
       cnpj,
       telefone
-    ) VALUES ($1, $2, $3, $4)
+    ) VALUES ($1, $2, $3)
     `,[
-      supplier.supplier_id,
       supplier.name,
       supplier.cnpj,
       supplier.phone

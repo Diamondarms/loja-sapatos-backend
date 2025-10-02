@@ -27,16 +27,10 @@ export interface ProductModel {
     name: string;                     // Não nulo
     category_id: number;             // FK → Categoria
     size: string;                   // Não nulo
+    stock: number;                  // Não nulo
     sale_price: number;             // NUMERIC(10,2), >= purchase_price
     purchase_price: number;         // NUMERIC(10,2), >= 0
     supplier_id: number;            // FK → Fornecedor
-}
-
-// Estoque
-export interface StockModel {
-    stock_id: number;               // Chave primária
-    quantity: number;               // >= 0
-    product_id: number;               // FK → Produto, único
 }
 
 // Venda
@@ -53,6 +47,8 @@ export interface ItemSaleModel {
     product_id: number;                // FK → Produto
     quantity: number;                // > 0
 }
+
+
 
 export enum PaymentMethod {
   DINHEIRO = 'dinheiro',
@@ -72,4 +68,12 @@ export interface PaymentModel {
     payment_id: number;              // Chave primária
     method_id: number;                  // FK → Metodo
     sale_id: number;                   // FK → Venda
+}
+
+
+/// OUTROS
+
+export interface ItemSalePayload {
+    product_id: number;
+    quantity: number;
 }

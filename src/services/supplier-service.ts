@@ -1,5 +1,5 @@
 import { SupplierModel } from "../models/models";
-import * as SuppliersRepository from "../repositories/supplier-repository";
+import * as SuppliersRepository from "../repositories/suppliers-repository";
 
 export const getSuppliersService = async () => {
     const data = await SuppliersRepository.findAllSuppliers();

@@ -48,14 +48,12 @@ export const findCustomerByName = async (name: string): Promise<CustomerModel | 
 export const createCustomer = async (customer: CustomerModel): Promise<void> => {
   await client.query(`
     INSERT INTO cliente (
-      id_cliente,
       nome,
       cpf,
       telefone,
       cep
-    ) VALUES ($1, $2, $3, $4, $5)
+    ) VALUES ($1, $2, $3, $4)
   `, [
-    customer.customer_id,
     customer.name,
     customer.cpf,
     customer.phone,

@@ -29,7 +29,7 @@ export const postProduct = async (req: Request, res: Response) => {
 };
 
 export const updateProduct = async (req: Request, res: Response) => {
-    const bodyValue = parseFloat(req.body.new_price);
+    const bodyValue = parseInt(req.body.quantity);
     const id = parseInt(req.params.id);
     const data = await productsService.updateProductService(id,bodyValue);
     
