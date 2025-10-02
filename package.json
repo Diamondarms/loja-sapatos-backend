@@ -4,7 +4,7 @@
   "main": "dist/server.ts",
   "type": "module",
   "scripts": {
-    "build": "tsup",
+    "build": "tsup src",
     "start" : "node dist/server.js",
     "start:dev": "dotenv -e .env tsx src/server.ts",
     "start:watch": "dotenv -e .env tsx watch src/server.ts",
