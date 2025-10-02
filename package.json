@@ -6,10 +6,9 @@
   "scripts": {
     "dist": "tsup src",
     "build": "npm run dist", 
-    "start": "node dist/src/server.js",
+    "start": "node dist/server.cjs",
     "start:dev": "dotenv -e .env tsx src/server.ts",
     "start:watch": "dotenv -e .env tsx watch src/server.ts",
-    "start:dist": "npm run dist && node dist/src/index.js"
   },
   "keywords": [],
   "author": "",
